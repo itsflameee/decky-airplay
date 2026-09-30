@@ -1,4 +1,4 @@
-var plugin_export = (function (React, ui) {
+(function (React, ui) {
   'use strict';
 
   var DefaultContext = {
