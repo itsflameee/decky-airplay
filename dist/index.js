@@ -1,4 +1,4 @@
-var plugin = (function (React, ui) {
+var plugin_export = (function (React, ui) {
   'use strict';
 
   var DefaultContext = {
@@ -174,6 +174,4 @@ var plugin = (function (React, ui) {
 
   return index;
 
-})(React, ui);
-
-export default plugin;
+})(SP_REACT, DFL);

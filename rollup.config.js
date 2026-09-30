@@ -28,12 +28,12 @@ export default defineConfig({
   output: {
     file: "./dist/index.js",
     format: "iife",
+    name: "plugin_export",
     exports: "default",
     globals: {
       react: "SP_REACT",
       "@decky/ui": "DFL",
       "react-dom": "SP_REACTDOM",
     },
-    intro: "return ",
   },
 });
