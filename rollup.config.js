@@ -29,7 +29,12 @@ export default defineConfig({
     file: "./dist/index.js",
     format: "iife",
     exports: "default",
-    name: "plugin",
-    footer: "\nexport default plugin;",
+    globals: {
+      react: "SP_REACT",
+      "@decky/ui": "DFL",
+      "react-dom": "SP_REACTDOM",
+    },
+    // Ключевой фикс: возвращаем самовызывающееся выражение напрямую
+    intro: "return ",
   },
 });
