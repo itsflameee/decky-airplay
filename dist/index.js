@@ -1,4 +1,4 @@
-var index = (function (React, ui) {
+var plugin = (function (React, ui) {
   'use strict';
 
   var DefaultContext = {
@@ -174,4 +174,6 @@ var index = (function (React, ui) {
 
   return index;
 
-})(SP_REACT, DFL);
+})(React, ui);
+
+export default plugin;

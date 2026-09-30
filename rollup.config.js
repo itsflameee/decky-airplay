@@ -27,13 +27,9 @@ export default defineConfig({
   external: ["react", "react-dom", "@decky/ui"],
   output: {
     file: "./dist/index.js",
-    name: "index",
-    globals: {
-      react: "SP_REACT",
-      "@decky/ui": "DFL",
-      "react-dom": "SP_REACTDOM",
-    },
     format: "iife",
     exports: "default",
+    name: "plugin",
+    footer: "\nexport default plugin;",
   },
 });
