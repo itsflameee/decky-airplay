@@ -27,12 +27,7 @@ export default defineConfig({
   external: ["react", "react-dom", "@decky/ui"],
   output: {
     file: "./dist/index.js",
-    name: "deckyAirplay",
-    globals: {
-      react: "SP_REACT",
-      "@decky/ui": "DFL",
-    },
-    format: "iife",
+    format: "esm",
     exports: "default",
   },
 });
