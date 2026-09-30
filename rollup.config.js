@@ -34,7 +34,6 @@ export default defineConfig({
       "@decky/ui": "DFL",
       "react-dom": "SP_REACTDOM",
     },
-    // Ключевой фикс: возвращаем самовызывающееся выражение напрямую
     intro: "return ",
   },
 });
