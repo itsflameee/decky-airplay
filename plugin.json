@@ -1,0 +1,8 @@
+{
+  "name": "Decky AirPlay",
+  "author": "itsflameee",
+  "type": "module",
+  "flags": ["root"],
+  "description": "Seamless, native AirPlay receiver for Steam Deck and handheld Linux distros with Gaming Mode (e.g., CachyOS Handheld, Bazzite).",
+  "version": "1.0.0"
+}

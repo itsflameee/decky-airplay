@@ -1,0 +1,6 @@
+node_modules/
+.vscode/
+*.pyc
+__pycache__/
+py_modules/**/__pycache__/
+py_modules/vdf-*.dist-info/

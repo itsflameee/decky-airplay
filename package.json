@@ -1,0 +1,26 @@
+{
+  "name": "decky-airplay",
+  "version": "1.0.0",
+  "description": "Seamless native AirPlay receiver for Steam Gaming Mode",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "author": "itsflameee",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "@decky/ui": "^3.25.1",
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-replace": "^5.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "react-icons": "^4.10.0",
+    "rollup": "^4.0.0",
+    "rollup-plugin-import-assets": "^1.1.0",
+    "tslib": "^2.6.0",
+    "typescript": "^5.0.0"
+  }
+}
