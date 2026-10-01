@@ -1,6 +1,8 @@
 import os
+import pwd
 import zlib
 import vdf
+from py_modules.session_utils import get_session_user_env
 
 def calculate_appid(exe: str, app_name: str) -> int:
     key = f"{exe}{app_name}".encode("utf-8")
@@ -8,18 +10,30 @@ def calculate_appid(exe: str, app_name: str) -> int:
     return (crc << 32) | 0x02000000
 
 def get_shortcuts_path() -> str | None:
-    steam_base = os.path.expanduser("~/.steam/steam/userdata")
-    if not os.path.exists(steam_base):
-        steam_base = os.path.expanduser("~/.local/share/Steam/userdata")
+    _, home_dir, _, _ = get_session_user_env()
+    candidates = [
+        os.path.join(home_dir, ".local/share/Steam/userdata"),
+        os.path.join(home_dir, ".steam/steam/userdata"),
+        os.path.join(home_dir, ".steam/root/userdata"),
+    ]
 
-    if not os.path.exists(steam_base):
+    steam_base = None
+    for cand in candidates:
+        if os.path.exists(cand):
+            steam_base = cand
+            break
+
+    if not steam_base:
         return None
 
-    user_dirs = [d for d in os.listdir(steam_base) if d.isdigit() and d != "0"]
-    if not user_dirs:
+    try:
+        user_dirs = [d for d in os.listdir(steam_base) if d.isdigit() and d != "0"]
+        if not user_dirs:
+            return None
+        user_dirs.sort(key=lambda d: os.path.getmtime(os.path.join(steam_base, d)), reverse=True)
+        return os.path.join(steam_base, user_dirs[0], "config", "shortcuts.vdf")
+    except Exception:
         return None
-
-    return os.path.join(steam_base, user_dirs[0], "config", "shortcuts.vdf")
 
 def register_airplay(plugin_dir: str) -> int | None:
     shortcuts_path = get_shortcuts_path()
@@ -63,5 +77,9 @@ def register_airplay(plugin_dir: str) -> int | None:
 
     with open(shortcuts_path, "wb") as f:
         f.write(vdf.binary_dumps(data))
+
+    username, _, uid, _ = get_session_user_env()
+    gid = pwd.getpwuid(uid).pw_gid
+    os.chown(shortcuts_path, uid, gid)
 
     return appid
