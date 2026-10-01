@@ -8,9 +8,9 @@ def get_session_user_env() -> tuple[str, str, int, dict]:
 
     try:
         pid_out = subprocess.check_output(
-            ["pgrep", "-u", "root", "-v", "-o", "-f", "gamescope|steam"],
+            ["pgrep", "-u", "1000", "-o", "-x", "steam"],
             text=True
-        ).strip().split('\n')[0]
+        ).strip().splitlines()[0]
         if pid_out:
             stat_info = os.stat(f"/proc/{pid_out}")
             uid = stat_info.st_uid
