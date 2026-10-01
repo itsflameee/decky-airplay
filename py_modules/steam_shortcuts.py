@@ -1,5 +1,11 @@
 import os
+import sys
 import pwd
+
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+if CURRENT_DIR not in sys.path:
+    sys.path.insert(0, CURRENT_DIR)
+
 import zlib
 import vdf
 from py_modules.session_utils import get_session_user_env
